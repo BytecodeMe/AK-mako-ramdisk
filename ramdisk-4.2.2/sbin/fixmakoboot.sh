@@ -1,6 +1,11 @@
 #!/sbin/bb/busybox ash
 bb="/sbin/bb/busybox"
 
+#
+# Disable mpDecision at boot
+#
+stop mpdecision
+
 $bb mount -o rw,remount /system
 
 if $bb [ ! -d /system/etc/init.d ]; then
