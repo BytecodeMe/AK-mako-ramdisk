@@ -22,15 +22,6 @@ else
  $bb echo "Init.d Directory Exist ...";
 fi;
 
-if [ ! -d /data/ak/backup ]; then
-  $bb echo "Making Backup Directory ...";
-  $bb mkdir /data/ak/backup;
-  $bb chown -R root.root /data/ak/backup;
-  $bb chmod -R 755 /data/ak/backup;
-else
- $bb echo "Backup Directory Exist ...";
-fi
-
 $bb mount -o ro,remount /system;
 
 # disable debugging
