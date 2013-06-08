@@ -1,8 +1,12 @@
-#!/sbin/bb/busybox ash
+#!/sbin/bb/busybox sh
+#
+# AK Kernel System Status Snapshot
+# Anarkia1976
+#
 
-bb="/sbin/bb/busybox"
-log="/data/ak/ak-boot.log"
-logbck="/data/ak/ak-boot.log.bck"
+bb=/sbin/bb/busybox;
+log=/data/ak/ak-boot.log;
+logbck=/data/ak/ak-boot.log.bck;
 
 #
 # Set sysctl Optimizations
