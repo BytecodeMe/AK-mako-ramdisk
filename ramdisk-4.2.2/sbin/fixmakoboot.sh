@@ -9,7 +9,7 @@ bb=/sbin/bb/busybox;
 #
 # Disable mpDecision at boot
 #
-stop mpdecision
+#stop mpdecision
 
 $bb mount -o rw,remount /system;
 
