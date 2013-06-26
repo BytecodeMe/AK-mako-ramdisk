@@ -16,6 +16,7 @@ package_extract_dir("data", "/data");
 set_perm(0, 0, 0755, 0755, "/system/lib/modules");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/etc/init.d");
 set_perm(0, 0, 0755, "/system/etc/init.d");
+set_perm(0, 0, 0644, "/system/etc/wifi/WCNSS_qcom_cfg.ini");
 ui_print(" > Installing AK Kernel ...");
 package_extract_file("boot.img", "/dev/block/platform/msm_sdcc.1/by-name/boot");
 ui_print(" > Installation is finished ...");
