@@ -38,6 +38,34 @@ echo "0" > /sys/module/alarm/parameters/debug_mask;
 echo "0" > /sys/module/alarm_dev/parameters/debug_mask;
 echo "0" > /sys/module/binder/parameters/debug_mask;
 
+# vm tweaks
+echo 5 > /proc/sys/vm/dirty_background_ratio;
+echo 200 > /proc/sys/vm/dirty_expire_centisecs;
+echo 20 > /proc/sys/vm/dirty_ratio;
+echo 500 > /proc/sys/vm/dirty_writeback_centisecs;
+echo 2884 > /proc/sys/vm/min_free_kbytes;
+echo 4 > /proc/sys/vm/min_free_order_shift;
+echo 3 > /proc/sys/vm/page-cluster;
+echo 0 > /proc/sys/vm/swappiness;
+echo 100 > /proc/sys/vm/vfs_cache_pressure;
+
+# lmk tweaks
+minfree=6144,8192,12288,16384,24576,40960;
+lmk=/sys/module/lowmemorykiller/parameters/minfree;
+minboot=`cat $lmk`;
+while sleep 1; do
+  if [ `cat $lmk` != $minboot ]; then
+    [ `cat $lmk` != $minfree ] && echo $minfree > $lmk || exit;
+  fi;
+done&
+
+# fs tweaks
+echo 10 > /proc/sys/fs/lease-break-time;
+
+# entropy tweaks
+echo 128 > /proc/sys/kernel/random/read_wakeup_threshold;
+echo 256 > /proc/sys/kernel/random/write_wakeup_threshold;
+
 # general queue tweaks
 for i in /sys/block/*/queue; do
   echo 512 > $i/nr_requests;
