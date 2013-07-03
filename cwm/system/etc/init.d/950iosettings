@@ -3,6 +3,22 @@
 # 11-Jun-2013 by Franco's Dev Team
 # malaroth, osm0sis, joaquinf, The Gingerbread Man, pkgnex, Khrushy, shreddintyres
 
+# sysfs+sdcard tweaks
+busybox mount -o remount,nosuid,nodev,noatime,nodiratime -t auto /;
+busybox mount -o remount,nosuid,nodev,noatime,nodiratime -t auto /proc;
+busybox mount -o remount,nosuid,nodev,noatime,nodiratime -t auto /sys;
+busybox mount -o remount,nosuid,nodev,noatime,nodiratime -t auto /sys/kernel/debug;
+busybox mount -o remount,nosuid,nodev,noatime,nodiratime -t auto /mnt/shell/emulated;
+for i in /storage/emulated/*; do
+  busybox mount -o remount,nosuid,nodev,noatime,nodiratime -t auto $i;
+  busybox mount -o remount,nosuid,nodev,noatime,nodiratime -t auto $i/Android/obb;
+done;
+
+# partition tweaks
+busybox mount -o remount,nosuid,nodev,noatime,nodiratime,barrier=0,noauto_da_alloc,discard -t auto /data;
+busybox mount -o remount,nosuid,nodev,noatime,nodiratime,barrier=0,noauto_da_alloc,discard -t auto /cache;
+busybox mount -o remount,nodev,noatime,nodiratime,barrier=0,noauto_da_alloc,discard -t auto /system;
+
 # set tweaks as scheduler defaults
 scheduler=reset;
 while sleep 1; do
