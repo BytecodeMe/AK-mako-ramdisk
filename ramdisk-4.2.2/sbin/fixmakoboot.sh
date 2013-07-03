@@ -76,12 +76,6 @@ for i in /sys/block/*/queue; do
   echo 0 > $i/rotational;
 done;
 
-# decrease dalvik vm heapgrowthlimit by altering the equation
-hs=`getprop dalvik.vm.heapsize | cut -dm -f1`;
-htu=`getprop dalvik.vm.heaptargetutilization`;
-hgl=`awk -v htu=$htu -v hs=$hs 'BEGIN { print (htu / 3) * hs }'`;
-setprop dalvik.vm.heapgrowthlimit $hgl'm';
-
 # wait for systemui and increase its priority
 while $bb sleep 1; do
   if [ `$bb pidof com.android.systemui` ]; then
