@@ -25,9 +25,9 @@ $bb mount -o ro,remount /system;
 
 # disable sysctl.conf to prevent ROM interference
 if [ -e /system/etc/sysctl.conf ]; then
-  mount -o remount,rw /system;
-  mv /system/etc/sysctl.conf /system/etc/sysctl.conf.fkbak;
-  mount -o remount,ro /system;
+  $bb mount -o remount,rw /system;
+  $bb mv /system/etc/sysctl.conf /system/etc/sysctl.conf.fkbak;
+  $bb mount -o remount,ro /system;
 fi;
 
 # disable debugging

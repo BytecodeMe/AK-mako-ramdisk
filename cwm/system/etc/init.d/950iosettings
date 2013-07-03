@@ -3,16 +3,6 @@
 # 11-Jun-2013 by Franco's Dev Team
 # malaroth, osm0sis, joaquinf, The Gingerbread Man, pkgnex, Khrushy, shreddintyres
 
-for class in $list
-do
-if [ $($busybox pgrep $class) ] ; then
-pid=$($busybox pgrep $class)
-    $busybox echo -17 > /proc/$pid/oom_adj
-    $busybox chmod 100 /proc/$pid/oom_adj
-    break
-fi
-done
-
 # set tweaks as scheduler defaults
 scheduler=reset;
 while sleep 1; do
