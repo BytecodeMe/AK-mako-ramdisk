@@ -41,7 +41,7 @@ loglevel 3
     export ANDROID_STORAGE /storage
     export ASEC_MOUNTPOINT /mnt/asec
     export LOOP_MOUNTPOINT /mnt/obb
-    export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/telephony-common.jar:/system/framework/mms-common.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar
+    export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/telephony-common.jar:/system/framework/mms-common.jar:/system/framework/framework_ext.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar
 
 # Backward compatibility
     symlink /system/etc /etc
@@ -65,6 +65,8 @@ loglevel 3
     mkdir /mnt/shell 0700 shell shell
     # Ensure permissions are set appropriately after device early-init.
     mkdir /storage 0050 root sdcard_r
+    # Create mountpoint so Dalvik can mark as slave in zygotes.
+    mount tmpfs tmpfs /storage mode=0050,uid=0,gid=1028
 
     # Directory for putting things only root should see.
     mkdir /mnt/secure 0700 root root
@@ -328,6 +330,9 @@ on boot
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
     chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
 
+    # Set - Power aware SMP scheduler -
+    write /sys/devices/system/cpu/sched_mc_power_savings 1
+
 # basic network init
     ifup lo
     hostname localhost
@@ -412,6 +417,8 @@ on boot
 
 # Set this property so surfaceflinger is not started by system_init
     setprop system_init.startsurfaceflinger 0
+
+    start sysinit
 
     class_start core
     class_start main
@@ -580,6 +587,9 @@ service mdnsd /system/bin/mdnsd
     socket mdnsd stream 0660 mdnsr inet
     disabled
     oneshot
+
+service shelld /system/xbin/shelld
+	class main
 
 # Execute files in /system/etc/init.d before booting
 service run-parts /sbin/bb/busybox run-parts /system/etc/init.d
