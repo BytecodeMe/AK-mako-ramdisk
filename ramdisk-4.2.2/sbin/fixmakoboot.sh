@@ -26,6 +26,9 @@ fi;
 
 $bb mount -o ro,remount /system;
 
+# set cgroup_timer_slack for bg_non_interactive tasks
+$bb echo 100000000 > /dev/cpuctl/apps/bg_non_interactive/timer_slack.min_slack_ns
+
 # disable sysctl.conf to prevent ROM interference
 if [ -e /system/etc/sysctl.conf ]; then
   $bb mount -o remount,rw /system;
