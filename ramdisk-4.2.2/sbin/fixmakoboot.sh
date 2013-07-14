@@ -56,6 +56,9 @@ echo 4 > /proc/sys/vm/min_free_order_shift;
 echo 3 > /proc/sys/vm/page-cluster;
 echo 0 > /proc/sys/vm/swappiness;
 echo 100 > /proc/sys/vm/vfs_cache_pressure;
+echo 92274688 > /proc/sys/vm/dirty_background_bytes
+echo 104857600 > /proc/sys/vm/dirty_bytes
+echo 1 > /proc/sys/vm/overcommit_memory
 
 # lmk tweaks
 minfree=6144,8192,12288,16384,24576,40960;
