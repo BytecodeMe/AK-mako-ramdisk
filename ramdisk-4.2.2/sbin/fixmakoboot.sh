@@ -28,6 +28,8 @@ $bb mount -o ro,remount /system;
 
 # set cgroup_timer_slack for bg_non_interactive tasks
 $bb echo 100000000 > /dev/cpuctl/apps/bg_non_interactive/timer_slack.min_slack_ns
+$bb echo 91 > /dev/cpuctl/apps/bg_non_interactive/cpu.shares
+$bb echo 400000 > /dev/cpuctl/apps/bg_non_interactive/cpu.rt_runtime_us
 
 # disable sysctl.conf to prevent ROM interference
 if [ -e /system/etc/sysctl.conf ]; then
@@ -76,6 +78,7 @@ echo 256 > /proc/sys/kernel/random/write_wakeup_threshold;
 for i in /sys/block/*/queue; do
   echo 512 > $i/nr_requests;
   echo 512 > $i/read_ahead_kb;
+  echo 0 > $i/iostats
   echo 2 > $i/rq_affinity;
   echo 0 > $i/nomerges;
   echo 0 > $i/add_random;
