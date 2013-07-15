@@ -37,7 +37,7 @@ cd $line
         echo "Project name: $project" >> "$rdir"/Changelog_$cdate.log
         echo "$log" | while read line
         do
-echo " •$line" >> "$rdir"/Changelog_$cdate.log
+echo " $line" >> "$rdir"/Changelog_$cdate.log
         done
 echo "" >> "$rdir"/Changelog_$cdate.log
     fi
