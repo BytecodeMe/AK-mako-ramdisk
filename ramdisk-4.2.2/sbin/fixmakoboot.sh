@@ -79,8 +79,8 @@ echo 256 > /proc/sys/kernel/random/write_wakeup_threshold;
 
 # general queue tweaks
 for i in /sys/block/*/queue; do
-  echo 160 > $i/nr_requests;
-  echo 160 > $i/read_ahead_kb;
+  echo 512 > $i/nr_requests;
+  echo 512 > $i/read_ahead_kb;
   echo 0 > $i/iostats
   echo 2 > $i/rq_affinity;
   echo 0 > $i/nomerges;
