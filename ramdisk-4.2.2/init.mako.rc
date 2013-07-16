@@ -435,11 +435,11 @@ on property:sys.boot_completed=1
   #write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 50000
   write /sys/devices/system/cpu/cpufreq/interactive/target_loads 85
   write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 1
-  write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1350000
+  write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 10260000
 
 # Set Auto Hotplug Parameters after sysboot completed
   write /sys/module/intelli_plug/parameters/intelli_plug_active 1
 
 # Set GPU Parameters after sysboot completed
-  #write /sys/devices/platform/kgsl-3d0.0/kgsl/kgsl-3d0/pwrscale/trustzone/governor simple
-  write /sys/devices/platform/kgsl-3d0.0/kgsl/kgsl-3d0/max_gpuclk 487500000
+  write /sys/devices/platform/kgsl-3d0.0/kgsl/kgsl-3d0/pwrscale/trustzone/governor simple
+  write /sys/devices/platform/kgsl-3d0.0/kgsl/kgsl-3d0/max_gpuclk 320000000
