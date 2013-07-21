@@ -79,14 +79,17 @@ echo 256 > /proc/sys/kernel/random/write_wakeup_threshold;
 
 # general queue tweaks
 for i in /sys/block/*/queue; do
-  echo 512 > $i/nr_requests;
-  echo 512 > $i/read_ahead_kb;
+  echo 128 > $i/read_ahead_kb;
   echo 0 > $i/iostats
-  echo 2 > $i/rq_affinity;
   echo 0 > $i/nomerges;
-  echo 0 > $i/add_random;
   echo 0 > $i/rotational;
 done;
+
+$bb echo 0 > /sys/block/mmcblk0/queue/add_random
+$bb echo 128 > /sys/block/mmcblk0/queue/max_sectors_kb
+$bb echo 512 > /sys/block/mmcblk0/queue/nr_requests
+$bb echo 256 > /sys/block/mmcblk0/queue/read_ahead_kb
+$bb echo 2 > /sys/block/mmcblk0/queue/rq_affinity
 
 # wait for systemui and increase its priority
 while $bb sleep 1; do
