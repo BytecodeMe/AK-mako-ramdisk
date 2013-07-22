@@ -12,7 +12,7 @@ stop mpdecision
 $bb mount -o rw,remount /system;
 
 # Enable Snake Charmer at boot - Limit Max Freq
-#$bb insmod /system/lib/modules/cpufreq_limit.ko
+$bb insmod /system/lib/modules/cpufreq_limit.ko
 
 # create init.d folder
 if [ ! -d /system/etc/init.d ]; then
