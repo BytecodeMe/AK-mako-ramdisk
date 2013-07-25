@@ -1,0 +1,15 @@
+  <com.teamkang.fauxclock.manager.DeviceSupport>
+    <betaDownloadURL>http://mbqonxda.net/Anarkia1976/Kernels/Mako/AK-FAUX-EXP/</betaDownloadURL>
+    <changeLogName>ak-faux-kernel-changelog.txt</changeLogName>
+    <deviceID>AK</deviceID>
+    <stableDownloadJB43>http://faux.androidro.ms/m7/jb43/</stableDownloadJB43>
+    <primarySupportForumURL>http://forum.xda-developers.com/showthread.php?t=2255900</primarySupportForumURL>
+    <secondarySupportForumURL></secondarySupportForumURL>
+    <similarDevice1>m7</similarDevice1>
+    <similarDevice2></similarDevice2>
+    <similarDevice3></similarDevice3>
+    <stableDownloadICS>http://faux.androidro.ms/m7/ics/</stableDownloadICS>
+    <stableDownloadJB41>http://faux.androidro.ms/m7/jb41/</stableDownloadJB41>
+    <stableDownloadJB42>http://mbqonxda.net/Anarkia1976/Kernels/Mako/AK-FAUX/</stableDownloadJB42>
+    <numOfVisibleDownloads>2</numOfVisibleDownloads>
+  </com.teamkang.fauxclock.manager.DeviceSupport>
