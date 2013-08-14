@@ -16,9 +16,6 @@ on early-init
     # This should occur before anything else (e.g. ueventd) is started.
     setcon u:r:init:s0
 
-    # Recreate the boot splash screen
-    symlink /initlogo.rle.bak /initlogo.rle
-
     start ueventd
 
 # create mountpoints
